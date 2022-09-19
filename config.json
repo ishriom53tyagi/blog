@@ -1,0 +1,26 @@
+{
+  "port": 5120,
+
+  "mongodb": {
+    "host": "localhost",
+    "db": "simplika_1",
+    "port": 27017,
+    "max_pool_size": 500,
+    "username": "",
+    "password": "",
+    "options": {
+      "useUnifiedTopology": true
+    }
+  },
+  "encryption": {
+    "jwt": {
+      "jwt_token_secret": "simplika-uat",
+      "jwt_expires_in": "2h"
+    },
+    "session": {
+      "maxage": "1800000",
+      "secure": false,
+      "secret": "simplika$28339ddd2"
+    }
+  }
+}
