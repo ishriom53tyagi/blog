@@ -1,5 +1,8 @@
 const getDb = require('../utils/database').getDb
 
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
 module.exports.getBlog = async function ( req , res ) {
 
     try {
@@ -16,8 +19,10 @@ module.exports.getBlog = async function ( req , res ) {
 
         }
 
+        const dom = new JSDOM(isBlogExist[0].content);
+
         let obj = {
-            name : "shriom Tyagi"
+            name : dom.window.document.documentElement.outerHTML
         }
 
         return res.render('index' , obj);
