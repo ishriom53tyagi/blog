@@ -6,7 +6,9 @@ var session = require('express-session')
 var MongoDBStore = require('connect-mongodb-session')(session)
 const app = express()
 
-const route = require("./route/route");
+const publicRoute = require("./route/publicRoute");
+const privateRoute = require("./route/privateRoute");
+const middleware = require("./middleware");
 const cors = require('cors')
 const config = require('./config.json')
 const db = require('./utils/database')
@@ -34,7 +36,10 @@ app.use(bodyParser.json({ limit: '50mb' }))
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.use('/route', route)
+app.use('/', publicRoute)
+app.use(middleware.verifyToken);
+app.use('/', privateRoute)
+
 //setup public folder
 
 app.use(

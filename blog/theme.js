@@ -48,6 +48,10 @@ module.exports.setBlog = async function ( req , res ) {
         const db = getDb()
 
         const blogDescriptionKey = req.body.descriptionKey;
+
+        if(! blogDescriptionKey ) {
+            throw new Error("No description key found!")
+        }
         const isBlogDescriptionKeyAlreadyExist = await db.collection('blog').find({ blog_description_key : blogDescriptionKey }).toArray();
 
         if( isBlogDescriptionKeyAlreadyExist.length ) {
@@ -80,7 +84,7 @@ module.exports.setBlog = async function ( req , res ) {
         console.log(error);
         return res.send({
             status : false ,
-            message : "Error while inserting Blog!"
+            message : error?.message ? error.message : "Error while inserting Blog!"
         })
 
     }

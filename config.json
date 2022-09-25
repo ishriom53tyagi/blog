@@ -14,8 +14,8 @@
   },
   "encryption": {
     "jwt": {
-      "jwt_token_secret": "simplika-uat",
-      "jwt_expires_in": "2h"
+      "jwt_token_secret": "jwtSecretValue",
+      "jwt_expires_in": "1h"
     },
     "session": {
       "maxage": "1800000",
